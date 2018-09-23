@@ -1,0 +1,47 @@
+{
+  "types": {
+    "lobby": {
+      "name":"lobby",
+      "plugin-location": "/network/config/instance/lobby/plugins/",
+      "maps-location": "/network/config/instance/lobby/maps/",
+      "starting-map": "spawn",
+      "max-players": 60,
+      "memory": 1024,
+      "max-instances": 10,
+      "starting-port": 1000
+    },
+
+    "br": {
+      "name":"br",
+      "plugin-location": "/network/config/instance/br/plugins/",
+      "maps-location": "/network/config/instance/br/maps/",
+      "starting-map": "spawn",
+      "max-players": 60,
+      "memory": 1024,
+      "max-instances": 10,
+      "starting-port": 1011
+    },
+
+    "duels": {
+      "name":"duels",
+      "plugin-location": "/network/config/instance/duels/plugins/",
+      "maps-location": "/network/config/instance/duels/maps/",
+      "starting-map": "spawn",
+      "max-players": 8,
+      "memory": 512,
+      "max-instances": 20,
+      "starting-port": 1032
+    },
+
+    "party": {
+      "name":"party",
+      "plugin-location": "/network/config/instance/party/plugins/",
+      "maps-location": "/network/config/instance/party/maps/",
+      "starting-map": "spawn",
+      "max-players": 60,
+      "memory": 1024,
+      "max-instances": 10,
+      "starting-port": 1043
+    }
+  }
+}
