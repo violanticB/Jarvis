@@ -2,5 +2,14 @@
   "net-motd": {
     "line-1": "{center}&l&a&kUnnamed &r&l&aNetwork",
     "line-2": "{center}&eCompetitive Minigame Network &7&l* &6&lBattle Royale Updated &7&l*"
+  },
+
+  "instances": {
+    "home-location": "/network/instances/"
+  },
+
+  "spigot" : {
+    "jar-location": "/network/config/spigot/",
+    "jar-name": "spigot.jar"
   }
 }
