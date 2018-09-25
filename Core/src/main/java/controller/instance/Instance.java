@@ -7,5 +7,8 @@ public interface Instance {
     String getName();
     int getId();
 
+    Process getProcess();
+    void setProcess(Process process);
+
     List<UUID> getPlayers();
 }

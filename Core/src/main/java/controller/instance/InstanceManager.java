@@ -1,7 +1,7 @@
 package controller.instance;
 
 import controller.Jarvis;
-
+import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -107,10 +107,15 @@ public class InstanceManager {
         System.out.println("----- JARVIS -----");
         System.out.println("Registering instance types...");
         getInstanceTypes().forEach((k, v) -> {
+            getInstances().put(k, new ConcurrentHashMap<>());
             System.out.println("Registered: " + k);
             System.out.println("     -> " + v.toString());
         });
         System.out.println("------------------");
+    }
+
+    public boolean isType(String name) {
+        return getInstanceTypes().containsKey(name);
     }
 
     public void loadSettings() {
@@ -152,7 +157,6 @@ public class InstanceManager {
 
     public void createInstance(String type) {
         InstanceInfo info = getInstanceTypes().get(type);
-        ProcessBuilder processBuilder = new ProcessBuilder();
 
         int startingPort = info.getStartingPort();
         int maxInstances = info.getMaxInstances();
@@ -160,12 +164,48 @@ public class InstanceManager {
 
         int remaining = maxInstances - currentInstances;
         int id = (maxInstances - remaining) + 1;
-        int nextPort = startingPort + id;
+        int nextPort = startingPort + id - 1;
 
         System.out.println("Starting instance " + info.getName().toUpperCase() + "-" + id + " @ localhost:" + nextPort);
 
-        processBuilder.directory(new File(INSTANCES_HOME + "/" + info.getName().toUpperCase() + "-" + id));
-        String command = "java";
+        File plugins = new File(info.getPlugins());
+        File maps = new File(info.getMaps());
+        String spigot = SPIGOT_PATH + "/" + SPIGOT_NAME;
+
+        File instanceDir = new File(INSTANCES_HOME + "/" + info.getName().toUpperCase() + "-" + id);
+        if(!instanceDir.exists()) {
+            instanceDir.mkdirs();
+        }
+
+        try {
+            FileUtils.copyDirectory(plugins, instanceDir);
+            FileUtils.copyDirectory(maps, instanceDir);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ProcessBuilder processBuilder = new ProcessBuilder(
+                "java", "-server", "-Dcom.mojang.eula.agree=true", "-jar",
+                "-Xmx" + info.getMemory() + "m",
+                "-Xms" + info.getMemory() + "m",
+                spigot,
+                "--port", "" + nextPort,
+                "--bukkit-settings", SPIGOT_PATH + "/bukkit.yml",
+                "--spigot-settings", SPIGOT_PATH + "/spigot.yml"
+        );
+
+        processBuilder.directory(instanceDir);
+
+        try {
+            Process process = processBuilder.start();
+            Instance instance = new SpigotInstance(info.getName(), id, process);
+            getInstances().get(info.getName()).put(id, instance);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Total output should look something like 'instance setup LOBBY 1 2000'
+        getInstance().getRedis().getPub().send("bungee", "instance setup " + info.getName() + " " + id + " " + nextPort);
     }
 
 }

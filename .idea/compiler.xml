@@ -7,7 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Core" />
+        <module name="ProxyJarvis" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Core" target="8" />
+      <module name="NetArch" target="1.5" />
+      <module name="ProxyJarvis" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

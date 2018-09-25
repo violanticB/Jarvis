@@ -1,15 +1,24 @@
 {
+  "startup": {
+    "lobby": 1,
+    "br": 3
+  },
+
   "net-motd": {
     "line-1": "{center}&l&a&kUnnamed &r&l&aNetwork",
     "line-2": "{center}&eCompetitive Minigame Network &7&l* &6&lBattle Royale Updated &7&l*"
   },
 
   "instances": {
-    "home-location": "/network/instances/"
+    "home-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\instances"
+  },
+
+  "proxy": {
+    "location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\bungee"
   },
 
   "spigot" : {
-    "jar-location": "/network/config/spigot/",
+    "jar-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\spigot",
     "jar-name": "spigot.jar"
   }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import controller.data.redis.Redis;
 import controller.instance.InstanceManager;
 
 import java.util.Scanner;
@@ -7,10 +8,18 @@ import java.util.Scanner;
 public class Jarvis {
 
     public static Jarvis instance;
+
+    private static Redis redis;
     private static InstanceManager instanceManager;
 
     private Jarvis() {
         instanceManager = new InstanceManager(this);
+
+        try {
+            redis = new Redis("localhost", 0000);
+        } catch(Exception e) {
+            log("Could not connect to Redis server.");
+        }
     }
 
     public InstanceManager getInstanceManager() {
@@ -19,6 +28,10 @@ public class Jarvis {
 
     public static Jarvis getInstance() {
         return instance;
+    }
+
+    public Redis getRedis() {
+        return redis;
     }
 
     public static void main(String[] args) {
@@ -70,7 +83,7 @@ public class Jarvis {
         }
     }
 
-    private static void log(String message) {
+    public static void log(String message) {
         System.out.println("[JARVIS] " + message);
     }
 

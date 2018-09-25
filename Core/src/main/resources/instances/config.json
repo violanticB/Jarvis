@@ -2,46 +2,46 @@
   "types": {
     "lobby": {
       "name":"lobby",
-      "plugin-location": "/network/config/instance/lobby/plugins/",
-      "maps-location": "/network/config/instance/lobby/maps/",
+      "plugin-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\lobby\\plugins",
+      "maps-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\lobby\\maps",
       "starting-map": "spawn",
       "max-players": 60,
       "memory": 1024,
       "max-instances": 10,
-      "starting-port": 1000
+      "starting-port": 2000
     },
 
     "br": {
       "name":"br",
-      "plugin-location": "/network/config/instance/br/plugins/",
-      "maps-location": "/network/config/instance/br/maps/",
+      "plugin-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\br\\plugins",
+      "maps-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\br\\plugins",
       "starting-map": "spawn",
       "max-players": 60,
       "memory": 1024,
       "max-instances": 10,
-      "starting-port": 1011
+      "starting-port": 2011
     },
 
     "duels": {
       "name":"duels",
-      "plugin-location": "/network/config/instance/duels/plugins/",
-      "maps-location": "/network/config/instance/duels/maps/",
+      "plugin-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\duels\\plugins",
+      "maps-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\duels\\plugins",
       "starting-map": "spawn",
       "max-players": 8,
       "memory": 512,
       "max-instances": 20,
-      "starting-port": 1032
+      "starting-port": 2032
     },
 
     "party": {
       "name":"party",
-      "plugin-location": "/network/config/instance/party/plugins/",
-      "maps-location": "/network/config/instance/party/maps/",
+      "plugin-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\party\\plugins",
+      "maps-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\party\\plugins",
       "starting-map": "spawn",
       "max-players": 60,
       "memory": 1024,
       "max-instances": 10,
-      "starting-port": 1043
+      "starting-port": 2043
     }
   }
 }
