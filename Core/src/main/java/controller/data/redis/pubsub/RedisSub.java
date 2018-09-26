@@ -19,7 +19,7 @@ public class RedisSub {
         return redis;
     }
 
-    private void listen(String channel) {
+    public void listen(String channel) {
         getRedis().getJedis().subscribe(new JedisPubSub() {
             @Override
             public void onMessage(String channel, String message) {
@@ -68,6 +68,14 @@ public class RedisSub {
                     Jarvis.log("Could not start instance type '" + instanceType + "'");
 
                 }
+            }
+        }
+
+        else if(message.startsWith("instance stop")) {
+            String[] msg = message.split(" ");
+
+            if(msg.length == 3) {
+                
             }
         }
 

@@ -5,6 +5,7 @@ import me.borawski.proxy.data.redis.Redis;
 import redis.clients.jedis.JedisPubSub;
 
 import java.net.InetSocketAddress;
+import java.util.UUID;
 
 /**
  * Created by Ethan on 9/25/2018.
@@ -21,7 +22,7 @@ public class RedisSub {
         return redis;
     }
 
-    private void listen(String channel) {
+    public void listen(String channel) {
         getRedis().getJedis().subscribe(new JedisPubSub() {
             @Override
             public void onMessage(String channel, String message) {
@@ -76,6 +77,19 @@ public class RedisSub {
 
         else if(message.equalsIgnoreCase("network stop")) {
 
+        }
+
+        else if(message.startsWith("move player")) {
+            String[] msg = message.split(" ");
+
+            if(msg.length == 4) {
+                UUID player = UUID.fromString(msg[2]);
+                String instance = msg[3];
+
+                ProxyJarvis.getInstance().getProxy().getPlayer(player).connect(
+                        ProxyJarvis.getInstance().getProxy().getServerInfo(instance)
+                );
+            }
         }
     }
 }

@@ -21,6 +21,7 @@ public class ProxyJarvis extends Plugin {
 
         try {
             redis = new Redis("localhost", 0000);
+            redis.getSub().listen("bungee");
         } catch (Exception e) {
             System.out.println("Couldn't connect to the Redis server.");
         }

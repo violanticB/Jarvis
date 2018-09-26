@@ -17,6 +17,7 @@ public class Jarvis {
 
         try {
             redis = new Redis("localhost", 0000);
+            redis.getSub().listen("jarvis");
         } catch(Exception e) {
             log("Could not connect to Redis server.");
         }
@@ -52,7 +53,20 @@ public class Jarvis {
                         instance.getInstanceManager().createInstance(type);
 
                     } else if (msg[1].equalsIgnoreCase("delete")) {
-                        log("TODO");
+                        String server = msg[2];
+                        String[] instanceParams = server.split("-");
+                        String type = instanceParams[0];
+                        int id = Integer.valueOf(instanceParams[1]);
+
+                        instance.getInstanceManager().getInstances().get(type)
+                                .get(id).getProcess().destroy();
+
+                        instance.getInstanceManager().getInstances().get(type)
+                                .remove(id);
+
+                        instance.getInstanceManager().getInstanceCount().put(
+                                type, instance.getInstanceManager().getInstanceCount().get(type) - 1
+                        );
 
                     } else {
                         log("Invalid arguments. 'instance [create <type>, delete {id}]'");
