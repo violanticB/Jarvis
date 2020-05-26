@@ -1,0 +1,28 @@
+{
+  "types": {
+    "Lobby": {
+      "name":"lobby",
+      "plugin-location": "/var/devNet/image/lobby/plugins",
+      "maps-location": "/var/devNet/image/lobby/maps",
+      "current-map": "lobby-map",
+      "properties": "/var/devNet/image/lobby/properties",
+      "max-players": 60,
+      "max-instances": 10,
+      "starting-port": 2000,
+      "spigot-version": "1.8"
+    },
+
+    "game": {
+      "name":"game",
+      "plugin-location": "/var/devNet/image/game/plugins",
+      "maps-location": "/var/devNet/image/game/maps",
+      "current-map": "game-map",
+      "properties": "/var/devNet/image/lobby/properties",
+      "max-players": 60,
+      "memory": 1024,
+      "max-instances": 10,
+      "starting-port": 2011,
+      "spigot-version": "1.14.2"
+    }
+  }
+}

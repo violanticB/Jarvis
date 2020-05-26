@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="19bdf176-c45d-4992-9491-aedc2fda19d0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Jarvis.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/ethan.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AntiCheat/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AntiCheat/src/main/java/net/violantic/anticheat/Perceptron.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/src/main/java/controller/CommandHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/src/main/java/controller/data/sql/DAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/src/main/java/controller/data/sql/SQLManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/src/main/java/controller/instance/persistence/InstanceDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/src/main/java/controller/instance/spigot/SpigotInstanceInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/src/main/java/controller/util/FileUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/src/main/java/controller/util/JsonUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JarvisWorker/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JarvisWorker/src/main/java/controller/worker/JarvisWorker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JarvisWorker/src/main/java/controller/worker/util/JsonUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JarvisWorker/src/main/resources/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/dependency-reduced-pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/src/main/java/net/violantic/api/NetworkAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/src/main/java/net/violantic/api/data/DAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/src/main/java/net/violantic/api/data/SQLManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/src/main/java/net/violantic/api/data/exception/ExistingRecordException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/src/main/java/net/violantic/api/data/exception/NonExistentRecordException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/src/main/java/net/violantic/api/player/NetworkPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/src/main/java/net/violantic/api/player/NetworkPlayerDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/target/NetworkLibrary-1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetworkLibrary/target/original-NetworkLibrary-1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-library/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-library/src/main/java/me/violantic/data/matrix/Matrix.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-library/src/main/java/me/violantic/data/nerualnet/NeuralNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/java/controller/Jarvis.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/main/java/controller/Jarvis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/java/controller/data/redis/Redis.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/main/java/controller/data/redis/Redis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/java/controller/data/redis/pubsub/RedisPub.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/main/java/controller/data/redis/communication/RedisPub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/java/controller/data/redis/pubsub/RedisSub.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/main/java/controller/data/redis/communication/RedisSub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/java/controller/instance/Instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/main/java/controller/instance/Instance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/java/controller/instance/InstanceInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/main/java/controller/instance/InstanceInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/java/controller/instance/InstanceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/main/java/controller/instance/InstanceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/java/controller/instance/SpigotInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/main/java/controller/instance/spigot/SpigotInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/java/controller/instance/map/Map.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/java/controller/proxy/ProxyManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/resources/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/main/resources/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/resources/instances/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/main/resources/instances/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProxyJarvis/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProxyJarvis/src/main/java/me/borawski/proxy/ProxyJarvis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProxyJarvis/src/main/java/me/borawski/proxy/config/ConfigHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProxyJarvis/src/main/java/me/borawski/proxy/data/redis/Redis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProxyJarvis/src/main/java/me/borawski/proxy/data/redis/pubsub/RedisPub.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProxyJarvis/src/main/java/me/borawski/proxy/data/redis/pubsub/RedisSub.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1bmSALTyins45PmVyqHujbxQKtF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15722656" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="controller.worker.util" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Maven.compileAPI">
+    <configuration name="JarvisWorker [clean,install]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/JarvisWorker" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="compileAPI" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/NetworkLibrary" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="compileJarvis" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/Core" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="compileProxyJarvis" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/ProxyJarvis" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Maven.compileJarvis" />
+      <item itemvalue="Maven.compileAPI" />
+      <item itemvalue="Maven.compileProxyJarvis" />
+      <item itemvalue="Maven.JarvisWorker [clean,install]" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="19bdf176-c45d-4992-9491-aedc2fda19d0" name="Default Changelist" comment="" />
+      <created>1563313286385</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1563313286385</updated>
+      <workItem from="1563313288138" duration="257000" />
+      <workItem from="1589235632523" duration="3351000" />
+      <workItem from="1589242160803" duration="7486000" />
+      <workItem from="1589257447046" duration="4994000" />
+      <workItem from="1589295736204" duration="9003000" />
+      <workItem from="1589311302583" duration="5907000" />
+      <workItem from="1589389864363" duration="8837000" />
+      <workItem from="1589403765759" duration="11656000" />
+      <workItem from="1589431088031" duration="1667000" />
+      <workItem from="1589432846728" duration="297000" />
+      <workItem from="1589484634944" duration="19732000" />
+      <workItem from="1589573487782" duration="646000" />
+      <workItem from="1589654567552" duration="9598000" />
+      <workItem from="1589693437803" duration="1444000" />
+      <workItem from="1589751165117" duration="288000" />
+      <workItem from="1589768641266" duration="16000" />
+      <workItem from="1589831180969" duration="5345000" />
+      <workItem from="1590002394359" duration="150000" />
+      <workItem from="1590002567454" duration="18123000" />
+      <workItem from="1590092017888" duration="12584000" />
+      <workItem from="1590167022872" duration="6238000" />
+      <workItem from="1590177597796" duration="623000" />
+      <workItem from="1590180540865" duration="6667000" />
+      <workItem from="1590449431055" duration="8000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="0" key="#Project_Structure" timestamp="1590012257204">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="0" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1590012257204" />
+    <state x="0" y="277" key="#SQL_Dialects" timestamp="1589325406486">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="277" key="#SQL_Dialects/0.0.1920.1040@0.0.1920.1040" timestamp="1589325406486" />
+    <state x="406" y="20" width="1247" height="999" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590429049793">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="406" y="20" width="1247" height="999" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590429049793" />
+    <state x="671" y="70" key="#com.intellij.ide.util.MemberChooser" timestamp="1590428998440">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="671" y="70" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590428998440" />
+    <state x="679" y="438" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1590013444783">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="679" y="438" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590013444783" />
+    <state x="611" y="344" width="698" height="362" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1589834895254">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="611" y="344" width="698" height="362" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1589834895254" />
+    <state x="624" y="203" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589655019743">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="624" y="203" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589655019743" />
+    <state width="902" height="250" key="GridCell.Tab.0.bottom" timestamp="1590439679789">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="902" height="250" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590439679789" />
+    <state width="902" height="250" key="GridCell.Tab.0.center" timestamp="1590439679789">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="902" height="250" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590439679789" />
+    <state width="902" height="250" key="GridCell.Tab.0.left" timestamp="1590439679788">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="902" height="250" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590439679788" />
+    <state width="902" height="250" key="GridCell.Tab.0.right" timestamp="1590439679789">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="902" height="250" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590439679789" />
+    <state x="595" y="97" key="Maven.ArtifactSearchDialog" timestamp="1590429157255">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="595" y="97" key="Maven.ArtifactSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590429157255" />
+    <state x="1075" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1590110267358">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1075" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590110267358" />
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1589242876505">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1589242876505" />
+    <state x="7" y="11" width="1913" height="883" key="new project wizard" timestamp="1590430664569">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="7" y="11" width="1913" height="883" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1590430664569" />
+    <state x="521" y="5" width="875" height="1034" key="search.everywhere.popup" timestamp="1590171737413">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="521" y="5" width="875" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590171737413" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+</project>

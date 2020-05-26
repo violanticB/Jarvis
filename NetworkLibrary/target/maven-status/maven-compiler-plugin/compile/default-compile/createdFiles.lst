@@ -1,0 +1,8 @@
+net\violantic\api\NetworkAPI.class
+net\violantic\api\player\NetworkPlayer$NetworkRank.class
+net\violantic\api\data\SQLManager.class
+net\violantic\api\data\exception\NonExistentRecordException.class
+net\violantic\api\data\DAO.class
+net\violantic\api\data\exception\ExistingRecordException.class
+net\violantic\api\player\NetworkPlayerDAO.class
+net\violantic\api\player\NetworkPlayer.class

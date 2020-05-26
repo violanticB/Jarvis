@@ -1,14 +1,23 @@
 package controller.instance;
 
-import java.util.List;
-import java.util.UUID;
-
 public interface Instance {
+
+    /**
+     * The type of instance
+     * @return Instance type
+     */
+    String getType();
+
+    /**
+     * Name of instance
+     * @return name
+     */
     String getName();
+
+    /**
+     * Index of instance by type
+     * @return id
+     */
     int getId();
 
-    Process getProcess();
-    void setProcess(Process process);
-
-    List<UUID> getPlayers();
 }

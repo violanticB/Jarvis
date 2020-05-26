@@ -7,8 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Core" />
-        <module name="ProxyJarvis" />
+        <module name="JarvisWorker" />
+        <module name="data-library" />
+        <module name="AntiCheat" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="NetworkLibrary" target="8" />
+      <module name="ProxyJarvis" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

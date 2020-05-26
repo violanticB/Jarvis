@@ -5,12 +5,11 @@ import me.borawski.proxy.data.redis.Redis;
 import redis.clients.jedis.JedisPubSub;
 
 import java.net.InetSocketAddress;
-import java.util.UUID;
 
 /**
  * Created by Ethan on 9/25/2018.
  */
-public class RedisSub {
+public class RedisSub extends JedisPubSub {
 
     private Redis redis;
 
@@ -22,52 +21,27 @@ public class RedisSub {
         return redis;
     }
 
+    @Override
+    public void onMessage(String channel, String message) {
+        super.onMessage(channel, message);
+        handle(message);
+    }
+
     public void listen(String channel) {
-        getRedis().getJedis().subscribe(new JedisPubSub() {
-            @Override
-            public void onMessage(String channel, String message) {
-                super.onMessage(channel, message);
-                handle(message);
-            }
-
-            @Override
-            public void onPMessage(String pattern, String channel, String message) {
-                super.onPMessage(pattern, channel, message);
-            }
-
-            @Override
-            public void onSubscribe(String channel, int subscribedChannels) {
-                super.onSubscribe(channel, subscribedChannels);
-            }
-
-            @Override
-            public void onUnsubscribe(String channel, int subscribedChannels) {
-                super.onUnsubscribe(channel, subscribedChannels);
-            }
-
-            @Override
-            public void onPUnsubscribe(String pattern, int subscribedChannels) {
-                super.onPUnsubscribe(pattern, subscribedChannels);
-            }
-
-            @Override
-            public void onPSubscribe(String pattern, int subscribedChannels) {
-                super.onPSubscribe(pattern, subscribedChannels);
-            }
-        }, channel);
+        this.redis.getJedis().subscribe(this, channel);
     }
 
     private void handle(String message) {
+        System.out.println("Receiving message: " + message);
         if(message.startsWith("instance setup")) {
             String[] msg = message.split(" ");
 
-            if(msg.length == 5) {
+            if(msg.length == 4) {
                 String instanceType = msg[2];
-                int id = Integer.valueOf(msg[3]);
-                int port = Integer.valueOf(msg[4]);
+                int port = Integer.parseInt(msg[3]);
 
-                ProxyJarvis.getInstance().addServer(instanceType.toUpperCase() + "-" + id, new InetSocketAddress("localhost", port));
-                System.out.println("Added server '" + instanceType.toUpperCase() + "-" + id + "' to the proxy's config");
+                ProxyJarvis.getInstance().addServer(instanceType.toUpperCase(), new InetSocketAddress("localhost", port));
+                System.out.println("Added server '" + instanceType.toUpperCase()  + "' to the proxy's config");
             }
         }
 
@@ -79,17 +53,5 @@ public class RedisSub {
 
         }
 
-        else if(message.startsWith("move player")) {
-            String[] msg = message.split(" ");
-
-            if(msg.length == 4) {
-                UUID player = UUID.fromString(msg[2]);
-                String instance = msg[3];
-
-                ProxyJarvis.getInstance().getProxy().getPlayer(player).connect(
-                        ProxyJarvis.getInstance().getProxy().getServerInfo(instance)
-                );
-            }
-        }
     }
 }

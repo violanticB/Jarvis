@@ -1,12 +1,9 @@
 package controller.data.redis;
 
-import controller.data.redis.pubsub.RedisPub;
-import controller.data.redis.pubsub.RedisSub;
+import controller.data.redis.communication.RedisPub;
+import controller.data.redis.communication.RedisSub;
 import redis.clients.jedis.Jedis;
 
-/**
- * Created by Ethan on 9/25/2018.
- */
 public class Redis {
 
     private Jedis jedis;
@@ -16,10 +13,11 @@ public class Redis {
     private RedisPub pub;
     private RedisSub sub;
 
-    /*
-     * Methods
+    /**
+     * Object for handling redis communication pipelines
+     * @param host Redis host
+     * @param port port
      */
-
     public Redis(String host, int port) {
         this.host = host;
         this.port = port;
@@ -30,26 +28,42 @@ public class Redis {
         sub = new RedisSub(this);
     }
 
-    /*
-     * Getters
+    /**
+     * Jedis instance
+     * @return jedis
      */
-
     public Jedis getJedis() {
         return this.jedis;
     }
 
+    /**
+     * Redis host
+     * @return host
+     */
     public String getHost() {
         return this.host;
     }
 
+    /**
+     * Redis port
+     * @return port
+     */
     public int getPort() {
         return this.port;
     }
 
+    /**
+     * Redis publisher pipelines
+     * @return publisher
+     */
     public RedisPub getPub() {
         return pub;
     }
 
+    /**
+     * Redis subscriber pipeline
+     * @return subscriber
+     */
     public RedisSub getSub() {
         return sub;
     }

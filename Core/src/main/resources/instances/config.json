@@ -1,47 +1,28 @@
 {
   "types": {
-    "lobby": {
+    "Lobby": {
       "name":"lobby",
-      "plugin-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\lobby\\plugins",
-      "maps-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\lobby\\maps",
-      "starting-map": "spawn",
+      "plugin-location": "/var/net/image/lobby/plugins",
+      "maps-location": "/var/met/image/lobby/maps",
+      "current-map": "lobby-map",
+      "properties": "/var/net/image/lobby/properties",
+      "max-players": 60,
+      "max-instances": 10,
+      "starting-port": 2000,
+      "spigot-version": "1.8"
+    },
+
+    "game": {
+      "name":"game",
+      "plugin-location": "/var/devNet/image/game/plugins",
+      "maps-location": "/var/devNet/image/game/maps",
+      "current-map": "game-map",
+      "properties": "/var/devNet/image/lobby/properties",
       "max-players": 60,
       "memory": 1024,
       "max-instances": 10,
-      "starting-port": 2000
-    },
-
-    "br": {
-      "name":"br",
-      "plugin-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\br\\plugins",
-      "maps-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\br\\plugins",
-      "starting-map": "spawn",
-      "max-players": 60,
-      "memory": 1024,
-      "max-instances": 10,
-      "starting-port": 2011
-    },
-
-    "duels": {
-      "name":"duels",
-      "plugin-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\duels\\plugins",
-      "maps-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\duels\\plugins",
-      "starting-map": "spawn",
-      "max-players": 8,
-      "memory": 512,
-      "max-instances": 20,
-      "starting-port": 2032
-    },
-
-    "party": {
-      "name":"party",
-      "plugin-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\party\\plugins",
-      "maps-location": "C:\\Users\\Ethan\\Desktop\\JARVISNET\\network\\config\\instance\\party\\plugins",
-      "starting-map": "spawn",
-      "max-players": 60,
-      "memory": 1024,
-      "max-instances": 10,
-      "starting-port": 2043
+      "starting-port": 2011,
+      "spigot-version": "1.14.2"
     }
   }
 }

@@ -1,0 +1,16 @@
+controller\data\sql\DAO.class
+controller\util\FileUtil.class
+controller\Jarvis.class
+controller\data\redis\communication\RedisSub$1.class
+controller\util\JsonUtil.class
+controller\instance\Instance.class
+controller\data\redis\Redis.class
+controller\instance\InstanceInfo.class
+controller\instance\InstanceManager.class
+controller\CommandHandler.class
+controller\data\redis\communication\RedisPub.class
+controller\data\redis\communication\RedisSub.class
+controller\data\sql\SQLManager.class
+controller\instance\persistence\InstanceDAO.class
+controller\instance\spigot\SpigotInstance.class
+controller\instance\spigot\SpigotInstanceInfo.class

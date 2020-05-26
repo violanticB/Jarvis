@@ -1,211 +1,264 @@
 package controller.instance;
 
 import controller.Jarvis;
+import controller.instance.spigot.SpigotInstance;
+import controller.instance.spigot.SpigotInstanceInfo;
+import controller.util.FileUtil;
+import controller.util.JsonUtil;
 import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Map;
+import java.io.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class InstanceManager {
+
     private Jarvis instance;
-
     private String SPIGOT_PATH;
-    private String SPIGOT_NAME;
-
     private String INSTANCES_HOME;
+    private String APP_HOME;
 
-    private Map<String, Integer> instanceCount;
-    private Map<String, InstanceInfo> instanceTypes;
-    private Map<String, Map<Integer, Instance>> instanceMap;
+    private Set<InstanceInfo> instanceTypes;
+    private Map<String, List<Instance>> instanceMap;
 
+    /**
+     * Controls active instances on the network
+     * @param instance Jarvis instance
+     */
     public InstanceManager(Jarvis instance) {
         this.instance = instance;
-        this.instanceCount = new ConcurrentHashMap<>();
-        this.instanceTypes = new ConcurrentHashMap<>();
+        this.instanceTypes = new HashSet<>();
         this.instanceMap = new ConcurrentHashMap<>();
     }
 
+    /**
+     * Jarvis instance
+     * @return
+     */
     public Jarvis getInstance() {
         return instance;
     }
 
-    public Map<String, Integer> getInstanceCount() {
-        return instanceCount;
-    }
-
-    public Map<String, InstanceInfo> getInstanceTypes() {
+    /**
+     * Instance images
+     * @return Set of {@link InstanceInfo}
+     */
+    public Set<InstanceInfo> getInstanceTypes() {
         return instanceTypes;
     }
 
-    public Map<String, Map<Integer, Instance>> getInstances() {
+    /**
+     * Get an instance image by name
+     * @return image
+     */
+    public InstanceInfo getImage(String name) {
+        for (InstanceInfo instanceType : instanceTypes) {
+            if(instanceType.getName().equalsIgnoreCase(name)) {
+                return instanceType;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * List of Instances by type
+     * @return Map of instances sorted by type
+     */
+    public Map<String, List<Instance>> getInstances() {
         return instanceMap;
     }
 
+    /**
+     * Check if there is an instance by a given name
+     * @param type Instance type
+     * @param name Instance name
+     * @return contains
+     */
+    public boolean contains(String type, String name) {
+        for (Instance i : instanceMap.get(type)) {
+            if(i.getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+
+    /**
+     * Load server images from SQL
+     */
     public void loadTypes() {
-        JSONObject json = parseFile("instances/config.json");
-        json = (JSONObject) json.get("types");
+        String query = "SELECT * FROM server_type;";
+        try {
+            PreparedStatement statement = this.instance.getSqlManager().getConnection().prepareStatement(query);
+            ResultSet set = statement.executeQuery();
+            while(set.next()) {
+                SpigotInstanceInfo image = new SpigotInstanceInfo(set);
+                instanceTypes.add(image);
+                instanceMap.put(image.getName(), new ArrayList<>());
+            }
 
-        JSONObject finalJson = json;
-        json.keySet().forEach((k) -> {
-            JSONObject object = (JSONObject) finalJson.get(k);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
-            getInstanceCount().put(object.get("name").toString(), 0);
-            getInstanceTypes().put(object.get("name").toString(), new InstanceInfo() {
-                @Override
-                public String getName() {
-                    return object.get("name").toString();
-                }
+//        JSONObject json = JsonUtil.parseFile("instances/config.json");
+//        if(json == null) {
+//            return;
+//        }
+//
+//        json = (JSONObject) json.get("types");
+//
+//        JSONObject finalJson = json;
+//        for (Object key : json.keySet()) {
+//            JSONObject object = (JSONObject) finalJson.get(key);
+//            getInstanceTypes().add(new SpigotInstanceInfo(object));
+//        }
 
-                @Override
-                public String getPlugins() {
-                    return object.get("plugin-location").toString();
-                }
-
-                @Override
-                public String getMaps() {
-                    return object.get("maps-location").toString();
-                }
-
-                @Override
-                public String getStartingMap() {
-                    return object.get("starting-map").toString();
-                }
-
-                @Override
-                public int getMaxPlayers() {
-                    return Integer.valueOf(object.get("max-players").toString());
-                }
-
-                @Override
-                public int getMemory() {
-                    return Integer.valueOf(object.get("memory").toString());
-                }
-
-                @Override
-                public int getMaxInstances() {
-                    return Integer.valueOf(object.get("max-instances").toString());
-                }
-
-                @Override
-                public int getStartingPort() {
-                    return Integer.valueOf(object.get("starting-port").toString());
-                }
-
-                @Override
-                public String toString() {
-                    return "name=" + getName() + ",plugins=" + getPlugins() + ",maps=" + getMaps() + ",defmap=" + getStartingMap() + ",maxPlayers=" + getMaxPlayers() + ",memory=" + getMemory() + ",max-instances=" + getMaxInstances() + ",starting-port=" + getStartingPort();
-                }
-            });
+        Jarvis.log("Registering instance types...");
+        getInstanceTypes().forEach((i) -> {
+            getInstances().put(i.getName(), new ArrayList<>());
+            Jarvis.log("Registered: [" + i.getName().toUpperCase() + "]");
+            System.out.println(i.toString());
         });
-
-        System.out.println("----- JARVIS -----");
-        System.out.println("Registering instance types...");
-        getInstanceTypes().forEach((k, v) -> {
-            getInstances().put(k, new ConcurrentHashMap<>());
-            System.out.println("Registered: " + k);
-            System.out.println("     -> " + v.toString());
-        });
-        System.out.println("------------------");
     }
 
+    /**
+     * Check if a given string is a valid server type name.
+     * @param name Given name
+     * @return isType
+     */
     public boolean isType(String name) {
-        return getInstanceTypes().containsKey(name);
+        boolean isType = false;
+
+        for (InstanceInfo instanceType : instanceTypes) {
+            if(instanceType.getName().equalsIgnoreCase(name)) {
+                isType = true;
+            }
+        }
+
+        return isType;
     }
 
+    /**
+     * Loads settings for Instance Manager, and application
+     * in general.
+     */
     public void loadSettings() {
-        JSONObject object = parseFile("config.json");
+        JSONObject object = JsonUtil.parseFile("config.json");
         JSONObject instanceSettings = (JSONObject) object.get("instances");
 
         String instanceDir = (String) instanceSettings.get("home-location");
         INSTANCES_HOME = instanceDir;
 
         JSONObject spigotSettings = (JSONObject) object.get("spigot");
-
-        String fileDir = (String) spigotSettings.get("jar-location");
-        String fileName = (String) spigotSettings.get("jar-name");
-
+        String fileDir = (String) spigotSettings.get("build-location");
         SPIGOT_PATH = fileDir;
-        SPIGOT_NAME = fileName;
 
-        System.out.println("----- JARVIS -----");
-        System.out.println("Registering jarvis settings...");
-        System.out.println("Instance Settings ->");
-        System.out.println("   home-location: " + instanceDir);
-        System.out.println("Spigot Settings ->");
-        System.out.println("   jar-directory: " + fileDir);
-        System.out.println("   jar-name: " + fileName);
-        System.out.println("------------------");
+        JSONObject appHome = (JSONObject) object.get("app");
+        APP_HOME = (String) appHome.get("app-home");
+
+        Jarvis.log("Registering network settings...");
+        Jarvis.log("[Instance Settings] ->");
+        Jarvis.log("- home-location : " + instanceDir);
+        Jarvis.log("[Spigot Settings] -> ");
+        Jarvis.log("- build-directory : " + fileDir);
     }
 
-    private JSONObject parseFile(String filePath) {
-        try {
-            return (JSONObject) new JSONParser().parse(new FileReader(Jarvis.class.getClassLoader().getResource(filePath).getFile()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
+    /**
+     * Create and start a server instance by
+     * any given server type
+     * @param type Server Type
+     */
     public void createInstance(String type) {
-        InstanceInfo info = getInstanceTypes().get(type);
-
+        InstanceInfo info = getImage(type);
         int startingPort = info.getStartingPort();
         int maxInstances = info.getMaxInstances();
-        int currentInstances = getInstanceCount().get(type);
+        int currentInstances = instanceMap.get(type).size();
 
         int remaining = maxInstances - currentInstances;
         int id = (maxInstances - remaining) + 1;
-        int nextPort = startingPort + id - 1;
+        int nextPort = (startingPort + id) - 1;
+        Jarvis.log("Starting instance " + info.getName().toUpperCase() + "-" + id + " @ localhost:" + nextPort);
 
-        System.out.println("Starting instance " + info.getName().toUpperCase() + "-" + id + " @ localhost:" + nextPort);
+        String instanceName = type + "-" + id;
 
         File plugins = new File(info.getPlugins());
-        File maps = new File(info.getMaps());
-        String spigot = SPIGOT_PATH + "/" + SPIGOT_NAME;
+        File properties = new File(info.getProperties());
+
+        String version = info.getVersion();
+        String spigot = SPIGOT_PATH + "/" + version;
+        File spigotFile = new File(spigot);
 
         File instanceDir = new File(INSTANCES_HOME + "/" + info.getName().toUpperCase() + "-" + id);
         if(!instanceDir.exists()) {
             instanceDir.mkdirs();
         }
 
+        File maps = new File(info.getMaps());
+        File currentMap = new File(instanceDir, info.currentMap());
+
         try {
-            FileUtils.copyDirectory(plugins, instanceDir);
-            FileUtils.copyDirectory(maps, instanceDir);
+
+            if(info.mapRefresh() || !currentMap.exists()) {
+                FileUtils.copyDirectory(maps, instanceDir);
+            }
+
+            FileUtils.copyDirectory(plugins, new File(instanceDir, "plugins"));
+            FileUtils.copyDirectory(properties, instanceDir);
+            FileUtils.copyDirectory(spigotFile, instanceDir);
+
+            // server.properties file
+            File propertiesFile = new File(instanceDir, "server.properties");
+            FileUtil.replaceFile(propertiesFile, "{port}", "" + nextPort);
+            FileUtil.replaceFile(propertiesFile, "{map}", info.currentMap());
+
+            // Stop script for instance
+            File stopScript = new File(instanceDir, "stop.sh");
+            FileUtil.replaceFile(stopScript, "{instance}", instanceName);
+
+            // Start script for instance
+            File startScript = new File(instanceDir, "server.sh");
+            FileUtil.replaceFile(startScript, "{instance}", instanceName);
+            String scriptLocation = instanceDir.getPath() + "/server.sh";
+            Jarvis.log("Attempting to start script '" + scriptLocation + "'");
+
+            ProcessBuilder screenBuilder = new ProcessBuilder("sh", scriptLocation);
+            screenBuilder.directory(instanceDir);
+            screenBuilder.start();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        ProcessBuilder processBuilder = new ProcessBuilder(
-                "java", "-server", "-Dcom.mojang.eula.agree=true", "-jar",
-                "-Xmx" + info.getMemory() + "m",
-                "-Xms" + info.getMemory() + "m",
-                spigot,
-                "--port", "" + nextPort,
-                "--bukkit-settings", SPIGOT_PATH + "/bukkit.yml",
-                "--spigot-settings", SPIGOT_PATH + "/spigot.yml"
-        );
-
-        processBuilder.directory(instanceDir);
-
-        try {
-            Process process = processBuilder.start();
-            Instance instance = new SpigotInstance(info.getName(), id, process);
-            getInstances().get(info.getName()).put(id, instance);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Instance instance = new SpigotInstance(info.getName(), id, nextPort);
+        getInstances().get(info.getName()).add(instance);
 
         // Total output should look something like 'instance setup LOBBY 1 2000'
-        getInstance().getRedis().getPub().send("bungee", "instance setup " + info.getName() + " " + id + " " + nextPort);
+        getInstance().getRedis().getPub().send("bungee", "instance setup " + instance.getName() + " " + nextPort);
+    }
+
+    /**
+     * Runs process that kills instances
+     * @param instance Server instance
+     */
+    public void killScreen(Instance instance) {
+        String name = instance.getName();
+        ProcessBuilder stopProcess = new ProcessBuilder("java", "-jar", "jarvis-worker.jar", name);
+        stopProcess.directory(new File(APP_HOME));
+
+        try {
+            stopProcess.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
