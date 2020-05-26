@@ -16,7 +16,6 @@ public class Jarvis {
 
     public Jarvis() {
         loadSqlCredentials();
-        log(sqlToken[0] + " " + sqlToken[1] + " " + sqlToken[2] + " " + sqlToken[3]);
         sqlManager = new SQLManager(sqlToken[0], 3306, sqlToken[1], sqlToken[2], sqlToken[3]);
 
         instanceManager = new InstanceManager(this);
