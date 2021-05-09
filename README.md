@@ -7,5 +7,4 @@ of game servers that is manipulated either manually or through the built in libr
 Core - Network program shell.
 JarvisProxy - BungeeCord connector plugin (handles game connections / routing).
 data-library - Library that is used for all data structure in the network architecture .
-
 NetworkAPI - API for network services, servers, and users.
